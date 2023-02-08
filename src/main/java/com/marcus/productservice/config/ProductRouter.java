@@ -15,12 +15,12 @@ public class ProductRouter {
 	@Autowired
 	ProductRouterHandler handler;
 
-	@Bean
-	public RouterFunction<ServerResponse> baseRouter(){
-		return RouterFunctions.route()
-				.path("functional/product", this::productRouterFunction)
-				.build();
-	}
+    @Bean
+    RouterFunction<ServerResponse> baseRouter() {
+        return RouterFunctions.route()
+                .path("functional/product", this::productRouterFunction)
+                .build();
+    }
 	
 	private RouterFunction<ServerResponse> productRouterFunction(){
 		return RouterFunctions.route()

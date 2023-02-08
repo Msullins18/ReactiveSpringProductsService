@@ -25,7 +25,7 @@ public class ProductRouterHandler {
 	}
 	
 	public Mono<ServerResponse> handleGetProductById(ServerRequest request){
-		return ServerResponse.ok().body(this.productService.getProductById(request.pathVariable("id")), ProductDto.class);
+		return ServerResponse.ok().body(this.productService.getProductById(Long.valueOf(request.pathVariable("id"))), ProductDto.class);
 	}
 	
 	public Mono<ServerResponse> handleInsertProduct(ServerRequest request){
@@ -38,7 +38,7 @@ public class ProductRouterHandler {
 	}
 
 	public Mono<ServerResponse> handledeleteProduct(ServerRequest request) {
-		return ServerResponse.ok().body(this.productService.deleteProduct(request.queryParam("id").get()),
+		return ServerResponse.ok().body(this.productService.deleteProduct(Long.valueOf(request.queryParam("id").get())),
 				ProductDto.class);
 	}
 }

@@ -20,14 +20,14 @@ public class ProductService {
 		return this.productRepo.findAll().map(MapperUtil::entityToDto);
 	}
 	
-	public Mono<ProductDto> getProductById(String id){
+	public Mono<ProductDto> getProductById(Long id){
 		return this.productRepo.findById(id).map(MapperUtil::entityToDto);
 	}
 	
 	public Mono<ProductDto> insertProduct(Mono<ProductDto> product){
 		return product
 				.map(MapperUtil::dtoToEntity)
-				.flatMap(this.productRepo::insert)
+				.flatMap(this.productRepo::save)
 				.map(MapperUtil::entityToDto);
 	}
 	
@@ -38,7 +38,7 @@ public class ProductService {
 				.map(MapperUtil::entityToDto);
 	}
 	
-	public Mono<Void> deleteProduct(String id) {
+	public Mono<Void> deleteProduct(Long id) {
 		return this.productRepo.deleteById(id);
 	}
 }
